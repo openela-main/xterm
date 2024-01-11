@@ -1,7 +1,7 @@
 Summary: Terminal emulator for the X Window System
 Name: xterm
 Version: 366
-Release: 8%{?dist}
+Release: 9%{?dist}
 URL: https://invisible-island.net/xterm
 License: MIT
 BuildRequires: make
@@ -61,7 +61,8 @@ done
 	--with-utempter \
 	--with-tty-group=tty \
 	--disable-full-tgetent \
-  --with-pcre2
+	--with-pcre2 \
+	--enable-logging
 
 %make_build
 
@@ -101,6 +102,10 @@ install -m644 -p xterm.appdata.xml $RPM_BUILD_ROOT%{_datadir}/appdata
 %{_mandir}/man1/resize.1*
 
 %changelog
+* Fri Mar 17 2023 Tomas Korbar <tkorbar@redhat.com> - 366-9
+- Enable logging support
+- Resolves: rhbz#2179054
+
 * Tue Feb 08 2022 Tomas Korbar <tkorbar@redhat.com> - 366-8
 - disable sixel support
 - Resolves: CVE-2022-24130
