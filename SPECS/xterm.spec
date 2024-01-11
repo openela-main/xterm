@@ -1,7 +1,7 @@
 Summary: Terminal emulator for the X Window System
 Name: xterm
 Version: 331
-Release: 1%{?dist}.2
+Release: 2%{?dist}
 URL: https://invisible-island.net/xterm
 License: MIT
 Group: User Interface/X
@@ -63,7 +63,8 @@ done
 	--with-icondir=%{_datadir}/icons \
 	--with-utempter \
 	--with-tty-group=tty \
-	--disable-full-tgetent
+	--disable-full-tgetent \
+	--enable-logging
 
 make %{?_smp_mflags}
 
@@ -103,6 +104,10 @@ install -m644 -p xterm.appdata.xml $RPM_BUILD_ROOT%{_datadir}/appdata
 %{_mandir}/man1/resize.1*
 
 %changelog
+* Fri Mar 17 2023 Tomas Korbar <tkorbar@redhat.com> - 331-2
+- Enable logging support
+- Resolves: rhbz#2178912
+
 * Fri Feb 12 2021 Tomas Korbar <tkorbar@redhat.com> - 331-1.2
 - Fix issue found by covcan
 - Related: rhbz#1927567
